@@ -1,0 +1,14 @@
+{
+  "Codice": "1",
+  "Nome": "lkn",
+  "Disponibile": true,
+  "Quantita": 5,
+  "Categorie": [
+    "gfd",
+    "dfxg"
+  ],
+  "Posizione": {
+    "Magazzino": "2",
+    "Scaffale": 1
+  }
+}

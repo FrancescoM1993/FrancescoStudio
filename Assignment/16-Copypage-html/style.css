@@ -1,0 +1,71 @@
+body {
+    background-color: #ee0808;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.red{
+    background-color: rgb(160, 33, 33);
+}
+
+.button{
+    background-color: rgb(133, 7, 7);
+}
+
+.codeIcon{
+    border: 5px solid white;
+    border-radius: 50%;
+    font-size: 1em;
+    padding: 3px;
+}
+
+main{
+    width: 100%;
+    max-width: 100%;
+}
+
+.fps{
+    background-color:aliceblue;
+    padding:40px;
+    
+}
+
+/*div{
+    border: 1px solid black;
+}*/
+
+footer {
+    background-color:  rgb(160, 33, 33);
+    color: rgb(250, 246, 246);
+    padding: 20px;
+}
+
+
+.nav-link p,
+.header-content h1,
+.header-content h5 {
+    color: rgb(250, 246, 246);
+   text-align: start;
+}
+.column-content p,
+.column-content h5 {
+    color: white;
+    margin: 0;
+}
+
+.linea-sottile {
+    height: 0.5px;
+    width: 80%;
+    background-color: white;
+    border: none;
+    margin: 40px auto;
+    opacity: 0.3;
+}
+
+h4,
+h5
+{
+    color: rgb(240, 236, 236);
+}

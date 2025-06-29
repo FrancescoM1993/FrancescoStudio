@@ -1,0 +1,15 @@
+{
+  "nome": "Giovanni Bianchi",
+  "eta": 30,
+  "presente": true,
+  "interessi": [
+    "Calcio",
+    "Programmazione",
+    "Musica"
+  ],
+  "indirizzo": {
+    "via": "Via Roma",
+    "citta": "Milano",
+    "cap": "20100"
+  }
+}

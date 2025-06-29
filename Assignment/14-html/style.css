@@ -1,0 +1,192 @@
+/* Impostazioni base */
+body {
+font-family: 'Roboto', sans-serif;
+margin: 20px; /* il margine è lo spazio esterno */
+padding: 0; /* il padding è lo spazio interno */
+line-height: 1.6; /* altezza della linea */
+background-color: #e6e316;
+color: #333333;
+}
+
+/* NAVBAR */
+nav {
+background-color: #333333;
+padding: 2vw;
+text-align: center; /* altri valori: left, right, justify */
+}
+
+nav a {
+text-decoration: none;
+margin: 0 15px 20px;
+font-weight: bold;
+color: #eb1111;
+transition: color 0.5s;
+}
+
+nav a:hover {
+color: #0066cc;
+}
+
+/* SEZIONI */
+section {
+padding: 4vw 3vw;
+background-color: #e49d10;
+border-bottom: 1px solid #999999; /* altri valori: dotted, dashed, double, groove, inset, outset */
+}
+
+section:nth-child(even) {
+    background-color: #f50a0a; /* nth-child seleziona gli elementi in base alla loro posizione */
+}
+
+/* TITOLI */
+h1 {
+    font-family: 'Bungee Spice', sans-serif;
+    margin-top: 0;
+    color: #0066cc;
+    Font-size: 5vw; /* 8% */
+}
+h2 {
+    font-family: 'Bungee Spice', sans-serif;
+    margin-top: 0;
+    color: #0066cc;
+    Font-size: 4vw;
+}
+h3 {
+    font-family: 'Bungee Spice', sans-serif;
+    margin-top: 0;
+    color: #0066cc;
+    Font-size: 3vw;
+}
+h4 {
+    font-family: 'Bungee Spice', sans-serif;
+    margin-top: 0;
+    color: #0066cc;
+    Font-size: 2vw;
+}
+
+
+/* PARAGRAFI */
+p {
+    margin: 1em 0; /* em è l'unità di misura relativa alla dimensione del font cioè 1em = 16px */
+    font-size: 3vw;
+}
+
+/* LISTE */
+ul, ol {
+    margin-left: 1em;
+}
+
+/* LINK */
+a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.5s;
+    
+}
+a:hover {
+    text-decoration: none;
+    color: #021b34;
+}
+
+/*header*/
+header {
+ position: sticky; /* sticky permette di mantenere l'header visibile durente lo scroll */
+ top: 0; /* top specifica la distanza dal bordo superiore della pagina */
+ z-index: 1; /* z-index specifica l'ordine di sovrapposizione degli elementi */
+ background-color: rgb(244, 251, 245);
+ border-bottom: 0px solid #ccc; /* gli attributi rappresentano spessore tipo colore */
+ 
+}
+
+main {
+    max-width: 600px;
+    margin: auto; /* margin auto centra l'elemento verticalmente e orizzontalmente */
+    padding: 20vw;
+}
+
+/* footer */
+footer {
+    background-color: #222;
+    color: rgb(224, 13, 13);
+    text-align: center;
+    padding: 5vw;
+    font-size: 1em; /* em è l'unità di */
+}
+
+/* Immagine */
+img{
+    width: 20%;
+    height: auto;
+    margin: auto; 
+    padding-left: 38vw;
+}
+/* Stili Personalizzato */
+/* Richiamo lo stile con il . perche nell html ho usato class="" */
+/* Richiamo lo stile con il # perche nell html ho usato id="" */
+.box1{
+    background-color: blueviolet;
+}
+.box3{
+    background-color: yellow;
+}
+#box4{
+    background-color: orange;
+}
+
+btn-custom{
+    background-color: #e6e316; 
+}
+/* Stili tabella */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border: #0066 1px solid;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+div{
+    
+    border: 1px solid #ccc;
+}
+/* Monitor */
+@media (min-width: 1201px){
+    body{
+        background-color: rgb(57, 131, 151);
+        
+    }
+}
+/* Tablet grande*/
+@media (max-width: 1200px){
+    body{
+        background-color: rgb(7, 233, 37);
+        
+    }
+}
+/*Tablet piccolo*/
+@media (max-width: 992px){
+    body{
+        background-color: rgb(25, 13, 165);
+        
+    }
+}
+/*Smartphone grande*/
+@media (max-width: 768px){
+    body{
+        background-color: rgb(228, 12, 12);
+        
+    }
+}
+/*Smartphone piccolo*/
+@media (max-width: 576px){
+    body{
+        background-color: rgb(246, 250, 246);
+        
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "nome": "Mario Rossi",
+  "eta": 30,
+  "presente": true,
+  "interessi": [
+    "Calcio",
+    "Programmazione",
+    "Musica"
+  ],
+  "indirizzo": {
+    "via": "Via Roma",
+    "citta": "Milano",
+    "cap": "20100"
+  }
+}

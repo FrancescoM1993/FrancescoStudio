@@ -320,16 +320,16 @@ bool LeggiBooleano(int Intero)
 
 public class Prodotti
 {
-    public string Codice { get; set; }
-    public string Nome { get; set; }
+    public string? Codice { get; set; }
+    public string? Nome { get; set; }
     public bool Disponibile { get; set; }
     public int Quantita { get; set; }
-    public List<string> Categorie { get; set; }
-    public Posizione Posizione { get; set; }
+    public List<string>? Categorie { get; set; }
+    public Posizione? Posizione { get; set; }
 }
 
 public class Posizione
 {
-    public string Magazzino { get; set; }
+    public string? Magazzino { get; set; }
     public int Scaffale { get; set; }
 }

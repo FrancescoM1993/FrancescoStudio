@@ -1,42 +1,116 @@
-.row {
-    background-color: #222;
-    padding: 25px;
-    Font-size: 10vw;
-    margin: auto;
-    text-align: center;
+:root{
+  --var-backgroundColor : #f8f9fa;
+  --var-backgroundBio : #f9f9f9;
+  --var-bioTitle : #2a2a72;
+  --var-bioParagraph : #555;
+  --var-TextColor: #222;
 }
 
-.container{
-    font-family: 'Roboto', sans-serif;
-    margin: 100px; 
-    padding: 20px; 
-    line-height: 1.6; 
-    background-color: #e4e4df;
-    color: #333333;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    overflow-x: hidden;
+    font-family: "Inter","Verdana";
+    background-color: var(--var-backgroundColor);
 }
 
-main{
-    max-width: 300px;
-    margin: auto;
+.cascadia{
+  font-family: 'Cascadia Code',"Verdana";
 }
 
-h1{
-    font-family: 'Bungee Spice', sans-serif;
-    margin-top: 0;
-    color: #0066cc;
-    Font-size: 5vw; 
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  border-radius: 1rem;
 }
 
-h2{
-    margin: auto;
-    font-family: 'Bungee Spice', sans-serif;
-    margin-top: 0;
-    color: #0066cc;
-    Font-size: 5vw;
-    text-align: center; 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-h3{
-    
+/* Immagine card */
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+/* Sezione competenze */
+#competenze {
+  background-color: var(--var-backgroundColor);
+}
+
+#competenze h2 {
+  font-weight: bold;
+  color: var(--varTtextColor);
+}
+
+.bio {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background-color: var(--var-backgroundBio); 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--var-TextColor);
+  line-height: 1.6;
+}
+
+.bio-title {
+  font-size: 2rem;
+  color: var(--var-bioTitle);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.bio-paragraph {
+  margin-bottom: 1.25rem;
+  font-size: 1.125rem;
+}
+
+.bio-paragraph strong {
+  color: var(--var-bioTitle);
+}
+
+.bio-paragraph em {
+  color: var(--var-bioParagraph);
+  font-style: italic;
+}
+
+.carousel-slides {
+  width: 200%; /* perché 2 slide */
+  transition: transform 0.5s ease-in-out;
+}
+
+#slide1:checked ~ .carousel-slides {
+  transform: translateX(0%);
+}
+
+#slide2:checked ~ .carousel-slides {
+  transform: translateX(-50%);
+}
+
+.carousel-slide {
+  flex: 0 0 50%; /* metà larghezza per 2 slide */
+  box-sizing: border-box;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-color: var(--var-TextColor);
+}
+
+.socialText{
+  font-family: "Edu NSW ACT Hand Pre";
+  font-size: 1em;
+  overflow-y: hidden;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-style: 'Poppins', Sans-Serif;
+  overflow-y: hidden;
 }

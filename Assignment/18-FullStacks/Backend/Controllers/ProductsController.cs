@@ -11,6 +11,13 @@ public class ProductsController : ControllerBase
 
     // public ProductsController(ProductService service) => _service = service;
 
+    public ProductsController(ProductService service)
+    {
+        _service = service ?? throw new ArgumentNullException(nameof(service));
+    }
+
+    
+
     [HttpGet]
     // public ActionResult<List<Product>> Get() => _service.GetAll();
 
@@ -18,6 +25,7 @@ public class ProductsController : ControllerBase
     {
         List<Product> products = _service.GetAll();
         return Ok(products);
+        
     }
 
 
@@ -29,7 +37,7 @@ public class ProductsController : ControllerBase
         {
             return NotFound();
         }
-        return p;
+        return Ok(p);
     }
     // POST api/products
     
@@ -49,7 +57,7 @@ public class ProductsController : ControllerBase
     curl -X POST \
     http://localhost:5102/api/products \
     -H "Content-Type: application/json" \
-    -d '{"name" : "Matita","price":0.50}'
+    -d '{"name" : "Matita","price":0.50,"Quantita"}'
     */
 
     // Metoto update
@@ -62,7 +70,7 @@ public class ProductsController : ControllerBase
     /* bash
     curl -X PUT http://localhost:5102/api/products \
     -H "Content-Type: application/json" \
-    -d '{"id":3,"name":"Matita HB","price":0.60}'
+    -d '{"id":3,"name":"Matita HB","price":0.60,"Quantita"}'
     */
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody] Product prod)

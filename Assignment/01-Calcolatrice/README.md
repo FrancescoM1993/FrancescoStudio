@@ -21,7 +21,7 @@ Scrivere un programma che simuli una calcolatrice. Il programma deve essere in g
 
 - In modo da gestire correttamente l'errore di divisione per zero,il programma deve controllare se il secondo numero è zero prima di eseguire l'operazione di divisione.
 
->In pratica devo usare un if per controllare se il secondo numero è zero prima di eseguire l'operazione di divisione.
+- In pratica devo usare un if per controllare se il secondo numero è zero prima di eseguire l'operazione di divisione.
 
 - Il programma deve essere in grado di gestire solo interi senza numeri decimali.
 

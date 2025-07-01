@@ -13,8 +13,8 @@ while (true)
     string Operazione = Console.ReadLine();
     // chiedo all'utente di inserire l'operazione da eseguire
 
-    //if(Operazione != "+" && Operazione != "-" && Operazione != "x" && Operazione != "/")
-    //Console.WriteLine("Operazione non valida"); questa riga non serve più perché l'abbiamo già gestita con il default del case in basso
+    // if(Operazione != "+" && Operazione != "-" && Operazione != "x" && Operazione != "/")
+    // Console.WriteLine("Operazione non valida"); questa riga non serve più perché l'abbiamo già gestita con il default del case in basso
 
     switch (Operazione)
     {
@@ -81,8 +81,8 @@ Console.WriteLine("Quale operazione vuoi eseguire? (+, -, x, /)");
 string Operazione = Console.ReadLine();
 // chiedo all'utente di inserire l'operazione da eseguire
 
-//if(Operazione != "+" && Operazione != "-" && Operazione != "x" && Operazione != "/")
-//Console.WriteLine("Operazione non valida"); questa riga non serve più perché l'abbiamo già gestita con il default del case in basso
+// if(Operazione != "+" && Operazione != "-" && Operazione != "x" && Operazione != "/")
+// Console.WriteLine("Operazione non valida"); questa riga non serve più perché l'abbiamo già gestita con il default del case in basso
 
 switch (Operazione)
 {

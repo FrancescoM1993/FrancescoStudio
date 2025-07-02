@@ -14,6 +14,8 @@ public class ProductsController : ControllerBase
     public ProductsController(ProductService service)
     {
         _service = service ?? throw new ArgumentNullException(nameof(service));
+        // Costruttore è un metodo che a differenza degli altri metodi tipo add remove ecc non c'è bisogno richiamarlo
+        // Viene attivato ogni volta che creo un istanza della classe
     }
 
     

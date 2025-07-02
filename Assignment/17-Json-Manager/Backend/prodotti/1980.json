@@ -1,0 +1,14 @@
+{
+  "Codice": "1980",
+  "Nome": "Luca random",
+  "Disponibile": false,
+  "Quantita": 0,
+  "Categorie": [
+    "1 della classe",
+    "2 dopo elisa in inglese"
+  ],
+  "Posizione": {
+    "Magazzino": "8",
+    "Scaffale": 2
+  }
+}

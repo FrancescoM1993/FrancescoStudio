@@ -1,0 +1,14 @@
+{
+  "Codice": "1995",
+  "Nome": "Desara",
+  "Disponibile": true,
+  "Quantita": 39,
+  "Categorie": [
+    "Programmatrice",
+    "Fullstack"
+  ],
+  "Posizione": {
+    "Magazzino": "5",
+    "Scaffale": 2
+  }
+}

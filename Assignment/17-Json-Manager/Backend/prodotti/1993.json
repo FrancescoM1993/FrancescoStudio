@@ -1,0 +1,14 @@
+{
+  "Codice": "1993",
+  "Nome": "Francesco",
+  "Disponibile": true,
+  "Quantita": 1000,
+  "Categorie": [
+    "Il migliore",
+    "Lo sai meglio di me"
+  ],
+  "Posizione": {
+    "Magazzino": "1",
+    "Scaffale": 1
+  }
+}

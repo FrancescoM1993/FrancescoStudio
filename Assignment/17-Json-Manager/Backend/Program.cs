@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Backend.Models;
 
 string path = @"prodotti"; // Impostando la variabile path come percorso di file json
 VerificaCartella(path); // Chiamata alla funzione verifica cartella passanso come argomento path visto sopra
@@ -36,7 +37,7 @@ int Scelta()
     */
     while (true)
     {
-        string input = Console.ReadLine();
+        string? input = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(input))
         {
             Console.WriteLine("Non è stato digitato nulla, riprova.");
@@ -54,7 +55,6 @@ int Scelta()
                 }
                 else
                 {
-
                     return SceltaUtente;
                 }
             }
@@ -181,7 +181,7 @@ void EliminaFile()
     inizializzo una stringa che prendo dall'utente e vado a crearne un altra con il Path.Combine si path e la stringa creata per eliminare
     */
     Console.WriteLine("Inserisci il codice del prodotto da eliminare:");
-    string codiceProdotto = Console.ReadLine();
+    string? codiceProdotto = Console.ReadLine();
 
     string fileToDel = Path.Combine(path, $"{codiceProdotto}.json");
 
@@ -224,7 +224,7 @@ void VisualizzaContenutoFile()
     Questa funzione è simile alla funzione elimina prodotto solo che non elimino ma la visualizzo
     */
     Console.WriteLine("Inserisci il codice del prodotto da visualizzare:");
-    string codiceProdotto = Console.ReadLine();
+    string? codiceProdotto = Console.ReadLine();
 
     string filePath = Path.Combine(path, $"{codiceProdotto}.json");
 
@@ -318,18 +318,3 @@ bool LeggiBooleano(int Intero)
     }
 }
 
-public class Prodotti
-{
-    public string? Codice { get; set; }
-    public string? Nome { get; set; }
-    public bool Disponibile { get; set; }
-    public int Quantita { get; set; }
-    public List<string>? Categorie { get; set; }
-    public Posizione? Posizione { get; set; }
-}
-
-public class Posizione
-{
-    public string? Magazzino { get; set; }
-    public int Scaffale { get; set; }
-}

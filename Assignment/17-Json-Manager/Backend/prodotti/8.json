@@ -1,0 +1,14 @@
+{
+  "Codice": "8",
+  "Nome": "8",
+  "Disponibile": true,
+  "Quantita": 8,
+  "Categorie": [
+    "8",
+    "8"
+  ],
+  "Posizione": {
+    "Magazzino": "8",
+    "Scaffale": 8
+  }
+}

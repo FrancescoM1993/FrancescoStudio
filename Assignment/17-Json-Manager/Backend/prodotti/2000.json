@@ -1,0 +1,14 @@
+{
+  "Codice": "2000",
+  "Nome": "Alessio",
+  "Disponibile": true,
+  "Quantita": 1,
+  "Categorie": [
+    "Overguarda",
+    "la palla che si attacca"
+  ],
+  "Posizione": {
+    "Magazzino": "5ù",
+    "Scaffale": 3
+  }
+}

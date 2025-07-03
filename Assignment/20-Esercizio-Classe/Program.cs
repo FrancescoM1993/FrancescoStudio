@@ -1,5 +1,4 @@
 
-
 /*Senza classe
 using Newtonsoft.Json.Linq;
 
@@ -57,7 +56,7 @@ Automobile automobile = new Automobile(
     assicurazioneAttiva: true
 );
 
-
+/*
 Console.WriteLine("Marca: ");
 automobile.Marca = Console.ReadLine();
 Console.WriteLine($"Anno di Immatricolazione:");
@@ -66,10 +65,16 @@ Console.WriteLine($"Modello:");
 automobile.Modello = Console.ReadLine();
 Console.WriteLine($"Assicurazione:true o false");
 automobile.AssicurazioneAttiva = bool.Parse(Console.ReadLine());
-
-
-/*
-Automobile automobile = new Automobile(); // Creo un libro di default
-new Automobile("Titolo", 2025, "Fantascienza", false); // Andiamo a creare un libro personalizzato
-Console.WriteLine($"Titolo: {automobile.Marca}");
 */
+
+new Automobile("Marca", 2025, "Tesla", false); // Andiamo a creare un automobile personalizzato
+
+// Mi stampa il costruttore default
+
+Automobile automobileDefault = new Automobile(); // Creo un automobile di default
+
+Console.WriteLine($"Marca: {automobileDefault.Marca}");
+Console.WriteLine($"Marca: {automobileDefault.AnnoImmatricolazione}");
+Console.WriteLine($"Marca: {automobileDefault.Modello}");
+Console.WriteLine($"Marca: {automobileDefault.AssicurazioneAttiva}");
+

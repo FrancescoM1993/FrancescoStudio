@@ -13,7 +13,6 @@
     {
         // codice da eseguire se la condizione è vera
     }
-    
 */
 
 // ESEMPIO DI USO DI IF
@@ -24,7 +23,6 @@ if (a > b)
 {
     // codice da eseguire se la condizione è vera
     Console.WriteLine($"{a} è maggiore di {b}");
-    
 }
 else
 {
@@ -105,8 +103,7 @@ switch (g)
     case true:
         Console.WriteLine("Il valore è vero");
         break; 
-     case false:
+    case false:
         Console.WriteLine("Il valore è falso");
         break;
-    
 }

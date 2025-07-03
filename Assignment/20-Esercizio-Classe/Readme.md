@@ -19,3 +19,10 @@ Provare in modalità
 - con classe
 - con costruttore personalizzato ed i default
 - con input dell'utente. cioè chiedendo all'utente di inserire i dati tramite i metodi di console
+
+# Lo sapete meglio di me parte 2
+
+-
+-
+-
+-

@@ -8,21 +8,21 @@ Ci sono anche il `foreach` e il `do while`
 Ciclo `for`
 Il ciclo for viene utilizzato per iterare su una sequenza (come una lista, una tupla o una stringa) o su un intervallo di numeri.
 
-
-
-
 for variabile in sequenza:
-     codice da eseguire
+    codice da eseguire
     
 Esempio
 */
 
+/*
+Pytone
 for i in range(5):
-    print(i)   //Stampa i numeri da 0 a 4    
+    print(i)   //Stampa i numeri da 0 a 4   // come è più bello il pitone
+*/
 
-for (int i = 0; i < 5; i++) ; // i e una variabile di controllo
+for (int z = 0; z < 5; z++)  // i e una variabile di controllo
     {
-        Console.WriteLine(i); // Stampa i numeri da 0 a 4
+        Console.WriteLine(z); // Stampa i numeri da 0 a 4
     }
 
 
@@ -30,22 +30,23 @@ for (int i = 0; i < 5; i++) ; // i e una variabile di controllo
 //Il ciclo while viene utilizzato per eseguire un blocco di codice finche una condizione è vera. La subtassi è la seguente:
 
 
-while(condizione)
+while (condizione)
 {
     // codice da eseguire
+    break; // per uscire dal while
 }
 
 // Esempio
 
 int i = 0; // inizializza la variabile i a 0
+
 while (i < 5) // finche i è minore di 5
 {
     Console.WriteLine(i); // Stampa i numeri da 0 a 4
     i++;
 }
- 
-// Esempio while con true
 
+// Esempio while con true
 
 while (true) // Ciclo infinito
 {
@@ -57,17 +58,18 @@ int k = 4;
 
 while (true) // Ciclo infinito
 {
-    Console.WriteLine("Ciclo infinito"); 
+    Console.WriteLine("Ciclo infinito");
     if (k == 5) // Se k è uguale a 5
     {
         break; // Esce dal ciclo
     }
-    
+
     k++; // Incrementa k di 1 (qua lo fa due volte) k4 poi somma e va k5
     //k--; // Decrementa k di 1 (qua va all'infinito)
-}  
+} 
+
 /*
- Ciclo `foreach`
+Ciclo `foreach`
 Il ciclo foreach viene utilizzato per iterare su una collezione (come un array o una lista) senza dover utilizzare un indice.
 */
 
@@ -94,6 +96,5 @@ foreach (string nome in nomi) // Itera su ogni elemento dell'array
     {
         Console.WriteLine("Nome non trovato"); 
     }
-    
 }
 

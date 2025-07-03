@@ -72,8 +72,18 @@ Console.WriteLine($"Il valore di {a} è minore o uguale a {b}: {minoreUguale}");
 
 // 3. Operatori logici (or, and, not)
 
-bool condizione1 = true; 
+bool condizione1 = true;
 bool condizione2 = false;
+
+/*
+tabella
+a   b   and   or not'a' 'b'
+0   0   0     0      1   1
+0   1   0     1      1   0
+1   0   0     1      0   1
+1   1   1     1      0   0
+Logica booleana che si usa negli if dove ho 1 il bool praticamente è vera la condizione e quindi entra dentro
+*/
 
 bool and = condizione1 && condizione2; // and (&&) significa che entrambe le condizioni devono essere vere
 //stampo il risultato 
@@ -104,14 +114,20 @@ Console.WriteLine($"Il valore di c dopo l'assegnazione è {c}");
 
 c /= 5; // divide e assegna
 //stampo il risultato
-Console.WriteLine($"Il valore di c dopo l'assegnazione è {c}"); 
+Console.WriteLine($"Il valore di c dopo l'assegnazione è {c}");
 
 
 // 5. Operatori incremento e decremento
 
+c = c + 1;
 c++; // incremento di 1 unita
 //stampo il risultato
 Console.WriteLine($"Il valore di c dopo l'incremento è {c}"); // 11
+
+c = c + 2;
+c += 2; // incremento di 2 unita
+//stampo il risultato
+Console.WriteLine($"Il valore di c dopo l'incremento è {c}"); // 12
 
 c--; // decremento di 1 unita
 //stampo il risultato
@@ -127,10 +143,8 @@ string nomeCompleto = nome + " " + cognome; // concatenazione
 //stampo il risultato
 Console.WriteLine($"Il nome completo è {nomeCompleto}"); 
 
-//metodo 2 concatenazione con string interpolation
+//metodo 2 concatenazione con string interpolazione
 
 string nomeCompleto2 = $"{nome} {cognome}";    
 //stampo il risultato
 Console.WriteLine($"Il nome completo è {nomeCompleto2}");
-
-

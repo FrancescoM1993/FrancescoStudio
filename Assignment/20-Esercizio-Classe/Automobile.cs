@@ -1,8 +1,8 @@
 public class Automobile
 {
-    public string Marca { get; set; }
-    public int AnnoImmatricolazione { get; set; }
-    public string Modello { get; set; }
+    public string? Marca { get; set; }
+    public int? AnnoImmatricolazione { get; set; }
+    public string? Modello { get; set; }
     public bool AssicurazioneAttiva { get; set; }
 
     public Automobile()

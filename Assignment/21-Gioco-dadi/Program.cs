@@ -59,3 +59,7 @@ foreach (var kvp in frequenze)
 {
     Console.WriteLine($"Numero {kvp.Key}: {kvp.Value} volte");
 }
+
+var d17 = new Dado(17);
+d17.LanciaMultiplo(2);
+Console.WriteLine(d17.ToString());

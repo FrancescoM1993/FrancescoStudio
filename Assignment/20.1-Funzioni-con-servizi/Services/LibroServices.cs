@@ -5,6 +5,7 @@ public class LibroService
 {
     // Percorso del file JSON come variabile privata
     private readonly string _percorsoFile;
+    
 
     public LibroService(string percorsoFile)
     {

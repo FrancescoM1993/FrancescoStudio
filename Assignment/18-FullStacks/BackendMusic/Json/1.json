@@ -1,0 +1,13 @@
+[
+{
+    "Titolo" : "Che gusto c'è",
+    "Anno" : 1990,
+    "Autore" : "FabriFibra",
+    "Canzoni": [
+        "canzone 1",
+        "canzone 2"
+    ],
+    "Genere" : "Rap",
+    "Ascoltato" : true
+}
+]

@@ -1,27 +1,3 @@
-
-string path = @"Json/1.json";
-AlbumService albumFibra = new(path);
-
-/*
-List<Album> albumFibra1 = albumFibra.CaricaAlbum();
-
-foreach (var af in albumFibra1)
-{
-
-    System.Console.WriteLine($"Titolo : {af.Titolo}");
-    System.Console.WriteLine($"Anno : {af.Anno}");
-    System.Console.WriteLine($"Autore : {af.Autore}");
-    
-    foreach (var canzone in af.Canzoni)
-    {
-        Console.WriteLine($"Canzone :{canzone}");
-    }
-
-    System.Console.WriteLine($"Genere : {af.Genere}");
-    System.Console.WriteLine($"Ascoltato : {af.Ascoltato}");
-}
-*/
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Aggiungi i Controller 

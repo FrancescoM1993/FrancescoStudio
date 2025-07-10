@@ -1,13 +1,27 @@
 [
-{
-    "Titolo" : "Che gusto c'è",
-    "Anno" : 1990,
-    "Autore" : "FabriFibra",
-    "Canzoni": [
-        "canzone 1",
-        "canzone 2"
-    ],
-    "Genere" : "Rap",
-    "Ascoltato" : true
-}
+    {
+        "Titolo": "Che gusto c'è",
+        "Anno": 1990,
+        "Autore": "FabriFibra",
+        "Canzoni": [
+            "canzone 1",
+            "canzone 2"
+        ],
+        "Genere": "Rap",
+        "Ascoltato": true
+    },
+    {
+        "titolo": "Fenomeno",
+        "anno": 2017,
+        "autore": "FabriFibra",
+        "canzoni": [
+            "Fenomeno",
+            "Pamplona",
+            "Tranne Te",
+            "Come mai",
+            "Stavo pensando a te"
+        ],
+        "genere": "Rap",
+        "ascoltato": true
+    }
 ]

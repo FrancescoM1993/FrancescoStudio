@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Aggiungi i Controller 
@@ -48,4 +49,3 @@ app.UseCors();
 app.MapControllers();
 
 app.Run();
-

@@ -1,11 +1,6 @@
 [
-
-        { "Id": 1,
-    "Titolo": "Thriller",
-    "Autore": "Michael Jackson"
-},
     {
-        "Id": 2,
+        "Id": 1,
         "Titolo": "Che gusto c'è",
         "Anno": 1990,
         "Autore": "FabriFibra",
@@ -17,7 +12,7 @@
         "Ascoltato": true
     },
     {
-        "Id": 3,
+        "id": 2,
         "titolo": "Fenomeno",
         "anno": 2017,
         "autore": "FabriFibra",

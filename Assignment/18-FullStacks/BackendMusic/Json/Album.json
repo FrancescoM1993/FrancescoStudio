@@ -5,25 +5,26 @@
         "Anno": 1990,
         "Autore": "FabriFibra",
         "Canzoni": [
-            "canzone 1",
-            "canzone 2"
+            {"Id":1 , "Titolo": "Fenomeno", "Durata": "3:45", "Artista": "FabriFibra"},
+            {"Id":2 , "Titolo": "Pamplona", "Durata": "4:00", "Artista": "FabriFibra"},
+            {"Id":3 , "Titolo": "Tranne Te", "Durata": "3:30", "Artista": "FabriFibra"}
         ],
         "Genere": "Rap",
         "Ascoltato": true
     },
     {
-        "id": 2,
-        "titolo": "Fenomeno",
-        "anno": 2017,
-        "autore": "FabriFibra",
-        "canzoni": [
-            "Fenomeno",
-            "Pamplona",
-            "Tranne Te",
-            "Come mai",
-            "Stavo pensando a te"
+        "Id": 2,
+        "Titolo": "Fenomeno",
+        "Anno": 2017,
+        "Autore": "FabriFibra",
+        "Canzoni": [
+            {"Id":1 , "Titolo": "Fenomeno", "Durata": "3:45", "Artista": "FabriFibra"},
+            {"Id":2 , "Titolo": "Pamplona", "Durata": "4:00", "Artista": "FabriFibra"},
+            {"Id":3 , "Titolo": "Tranne Te", "Durata": "3:30", "Artista": "FabriFibra"},
+            {"Id":4 , "Titolo": "Come mai", "Durata": "3:50", "Artista": "FabriFibra"},
+            {"Id":5 , "Titolo": "Stavo pensando a te", "Durata": "4:15", "Artista": "FabriFibra"}
         ],
-        "genere": "Rap",
-        "ascoltato": true
+        "Genere": "Rap",
+        "Ascoltato": true
     }
 ]

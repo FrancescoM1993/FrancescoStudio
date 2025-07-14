@@ -1,0 +1,30 @@
+[
+    {
+        "Id": 1,
+        "Titolo": "Che gusto c'è",
+        "Anno": 1990,
+        "Autore": "FabriFibra",
+        "Canzoni": [
+            {"id":1 , "Titolo": "Fenomeno", "Durata": "3:45", "Artista": "FabriFibra"},
+            {"id":2 , "Titolo": "Pamplona", "Durata": "4:00", "Artista": "FabriFibra"},
+            {"id":3 , "Titolo": "Tranne Te", "Durata": "3:30", "Artista": "FabriFibra"}
+        ],
+        "Genere": "Rap",
+        "Ascoltato": true
+    },
+    {
+        "id": 2,
+        "titolo": "Fenomeno",
+        "anno": 2017,
+        "autore": "FabriFibra",
+        "canzoni": [
+            {"id":1 , "Titolo": "Fenomeno", "Durata": "3:45", "Artista": "FabriFibra"},
+            {"id":2 , "Titolo": "Pamplona", "Durata": "4:00", "Artista": "FabriFibra"},
+            {"id":3 , "Titolo": "Tranne Te", "Durata": "3:30", "Artista": "FabriFibra"},
+            {"id":4 , "Titolo": "Come mai", "Durata": "3:50", "Artista": "FabriFibra"},
+            {"id":5 , "Titolo": "Stavo pensando a te", "Durata": "4:15", "Artista": "FabriFibra"}
+        ],
+        "genere": "Rap",
+        "ascoltato": true
+    }
+]

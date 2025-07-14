@@ -27,8 +27,8 @@
 //         return elenco ?? new List<Album>();
 //     }
 
-    
-  
+
+
 
 //     //Costruttore della classe dove gli passo il percorso con relativo nome
 //     public AlbumService(string percorsoAlbumFile = "Json/Album.json")
@@ -70,7 +70,7 @@
 //         return elenco;
 //     }
 //     */
-    
+
 
 //     // Ritorna l'elenco di tutti gli album
 //     public Album GetAll()
@@ -88,7 +88,7 @@
 //     // Ritorna una lista di oggetti di tipo album che corrisponde alla ricerca effettuata dall'utente(per nome)
 //     public Album GetByID(int id)
 //     {
-        
+
 //         foreach (var album in _percorsoAlbumFile)
 //         {
 //             if (album.Id == id)
@@ -127,55 +127,77 @@
 //     // }
 // }
 
-
+using BackendMusic.Models;
 using Newtonsoft.Json;
 
-public class AlbumService
+namespace BackendMusic.Services
 {
-    private readonly string _percorsoAlbumFile;
-    private List<Album> _album = new List<Album>();
-
-    public AlbumService(string percorsoAlbumFile = "Json/Album.json")
+    public class AlbumService
     {
-        _percorsoAlbumFile = percorsoAlbumFile;
+        private readonly string _percorsoAlbumFile;
+        private List<Album> _album = new List<Album>();
+
+        public AlbumService(string percorsoAlbumFile = "Json/Album.json")
+        {
+            _percorsoAlbumFile = percorsoAlbumFile;
+
+            if (!File.Exists(_percorsoAlbumFile))
+                throw new FileNotFoundException("File non trovato", _percorsoAlbumFile);
+
+            var json = File.ReadAllText(_percorsoAlbumFile);
+            var elenco = JsonConvert.DeserializeObject<List<Album>>(json);
+            _album = elenco ?? new List<Album>();
+        }
+
+        public List<Album> GetAll()
+        {
+            _album = Deserialize();
+            return _album;
+        }
+
+        public Album GetByID(int id)
+        {
+            var albumList = Deserialize();
+            return albumList.FirstOrDefault(a => a.Id == id);
+        }
+
+        public Album GetByName(string nome)
+        {
+            var albumList = Deserialize();
+            return albumList.FirstOrDefault(a => a.Titolo.Equals(nome, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public Album Aggiungi(Album nuovoAlbum)
+        {
+            var elenco = Deserialize();
+            if (nuovoAlbum.Id == 0)
+            {
+                int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1;
+                nuovoAlbum.Id = nuovoId;
+            }
+            elenco.Add(nuovoAlbum);
+            var json = JsonConvert.SerializeObject(elenco, Formatting.Indented);
+            File.WriteAllText(_percorsoAlbumFile, json);
+            return nuovoAlbum;
+        }
+        public List<Canzone> GetCanzoniByAlbumID(int id)
+        {
+            var album = GetByID(id);
+            return album?.Canzoni ?? new List<Canzone>();
+        }
+        public void Delete(int id)
+        {
+            var albumList = Deserialize();
+            var albumToRemove = albumList.FirstOrDefault(a => a.Id == id);
+            if (albumToRemove != null)
+            {
+                albumList.Remove(albumToRemove);
+                var json = JsonConvert.SerializeObject(albumList, Formatting.Indented);
+                File.WriteAllText(_percorsoAlbumFile, json);
+            }
+        }
     }
 
-    public List<Album> Deserialize()
-    {
-        if (!File.Exists(_percorsoAlbumFile))
-            throw new FileNotFoundException("File non trovato", _percorsoAlbumFile);
-
-        var json = File.ReadAllText(_percorsoAlbumFile);
-        var elenco = JsonConvert.DeserializeObject<List<Album>>(json);
-        return elenco ?? new List<Album>();
-    }
-
-    public List<Album> GetAll()
-    {
-        _album = Deserialize();
-        return _album;
-    }
-
-    public Album GetByID(int id)
-    {
-        var albumList = Deserialize();
-        return albumList.FirstOrDefault(a => a.Id == id);
-    }
-
-    public Album GetByName(string nome)
-    {
-        var albumList = Deserialize();
-        return albumList.FirstOrDefault(a => a.Titolo.Equals(nome, StringComparison.OrdinalIgnoreCase));
-    }
-
-    public Album Aggiungi(Album nuovoAlbum)
-    {
-        var elenco = Deserialize();
-        elenco.Add(nuovoAlbum);
-        var json = JsonConvert.SerializeObject(elenco, Formatting.Indented);
-        File.WriteAllText(_percorsoAlbumFile, json);
-        return nuovoAlbum;
-    }
 }
 
 

@@ -1,0 +1,40 @@
+# Album Manager
+
+## Descrizione
+Applicazione per gestire un archivio di album musicali e relative canzoni salvate in un file JSON.
+
+## Struttura del progetto
+Il progetto è organizzato in tre principali componenti:
+
+- Model: contiene le classi `Album` e `Canzone` che rappresentano la struttura dei dati.
+- Service: contiene la classe `AlbumService` che si occupa di leggere/scrivere i dati su file JSON e di fornire      
+  metodi per operazioni CRUD sugli album.
+- Controller: Gestisce la comunicazione tra utente e service usando la classe controllerbase `ControllerBase`.
+
+## Funzionalità principali
+
+- Caricamento lista album dal file JSON (`Deserialize()`).
+- Recupero di tutti gli album (`GetAll()`).
+- Ricerca album per ID (`GetByID(int id)`) o per nome (`GetByName(string nome)`).
+- Aggiunta di un nuovo album e salvataggio su file (`Aggiungi(Album nuovoAlbum)`).
+- Eliminazione di un album (`Delete(int id)`).
+- Recupero delle canzoni associate a un album (`GetCanzoniByAlbumID(int id)`).
+
+## Come usare
+
+1. Creare un'istanza di `AlbumService`, specificando eventualmente il percorso del file JSON.
+2. Usare i metodi messi a disposizione (`GetAll()`, `GetByID()`, etc.).
+3. Le modifiche agli album aggiornano automaticamente il file JSON.
+
+## Tecnologie usate
+
+- C#
+- Newtonsoft.Json per la serializzazione/deserializzazione JSON
+- File system per la persistenza dati
+- using Microsoft.AspNetCore.Mvc; per la gestione dei controller
+
+
+
+
+
+

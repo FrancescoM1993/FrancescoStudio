@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 // Vado a simulare un archivio di dati 
 
 builder.Services.AddSingleton<AlbumService>();
+builder.Services.AddSingleton<UtenteService>();
 
 // Configurare CORS per permettere tutte le origini (sviluppo locale)
 // Cross Origin Resource Sharing, è una politica di sicurezza che permette o blocca le richieste tra domini diversi

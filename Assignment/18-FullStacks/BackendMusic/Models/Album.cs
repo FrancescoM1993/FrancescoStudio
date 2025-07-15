@@ -10,11 +10,6 @@ namespace BackendMusic.Models
     public string Genere { get; set; }
     public bool Ascoltato { get; set; }
 
-    public Album()
-    {
-
-    }
-
     }
 }
 

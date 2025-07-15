@@ -42,7 +42,7 @@ da un file json invece che da un elenco o lista interna
 
 - Esempio di comando per aggiungere album:
 
-curl -X POST http://localhost:5017/album \
+curl -X POST http://localhost:5017/api/album \
 -H "Content-Type: application/json" \
 -d '{
     "titolo" : "Album",
@@ -53,6 +53,6 @@ curl -X POST http://localhost:5017/album \
     "ascoltato" : false
 }'
 
-curl -X DELETE http://localhost:5017/album/1 \
+curl -X DELETE http://localhost:5017/api/album/1 \
 -H "Content-Type: application/json"
 - Esempio di comando per eliminare un album:

@@ -1,0 +1,24 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Mario",
+    "Cognome": "Rossi",
+    "informazioniUtente": {
+      "Email": "mario.rossi@example.com",
+      "Indirizzo": "Via Roma 1",
+      "Citta": "Milano",
+      "Cap": 20100
+    }
+  },
+  {
+        "Id": 2,
+        "Nome": "Luigi",
+        "Cognome": "Verdi",
+        "InformazioniUtente": {
+            "Email": "luigi.verdi@example.com",
+            "Indirizzo": "Via Milano 2",
+            "Citta": "Torino",
+            "Cap": 10100
+        }
+    }
+]

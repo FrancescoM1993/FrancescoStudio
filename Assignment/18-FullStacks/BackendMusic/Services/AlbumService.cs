@@ -1,132 +1,3 @@
-// using Newtonsoft.Json;
-// public class AlbumService
-// {
-//     // Inizializzazione percorsoAlbumFile privato con "_"
-//     // Inizializzazione di lista album
-
-//     // private List<Album> _album = new List<Album>();
-
-
-
-
-//     private readonly string _percorsoAlbumFile;
-
-//     public List<Album> Deserialize()
-//     {
-//         string percorsoAlbumFile = "Json/Album.json";
-
-//         if (!File.Exists(percorsoAlbumFile))
-//         {
-//             // questo metodo mi permette di gestire l'eccezione
-//             throw new FileNotFoundException("File non trovato", percorsoAlbumFile);
-//         }
-
-//         var json = File.ReadAllText(percorsoAlbumFile);
-//         // Deserializzo contenuto in una lista di oggetti di tipo album sulla variabile elenco
-//         var elenco = JsonConvert.DeserializeObject<List<Album>>(json);
-//         return elenco ?? new List<Album>();
-//     }
-
-
-
-
-//     //Costruttore della classe dove gli passo il percorso con relativo nome
-//     public AlbumService(string percorsoAlbumFile = "Json/Album.json")
-//     {
-//         _percorsoAlbumFile = percorsoAlbumFile; // Rendo da privata a pubblica per poterla utilizzare nel controller
-//     }
-//     /*
-//     // Funzione carica album void dove nn mi deve return nulla va a prendere il percorso privato e se non esiste gestisco l'eccezione
-//     public void CaricaAlbum()
-//     {
-
-//         if (!File.Exists(_percorsoAlbumFile))
-//         {
-//             // questo metodo mi permette di gestire l'eccezione
-//             throw new FileNotFoundException("File non trovato", _percorsoAlbumFile);
-//         }
-
-//         else
-//         {
-//             // qui uso la funzione deserializza 
-//             Deserializza("Json/Album.json");
-//         }
-//     }
-
-//     // Uso della funzione deserializza
-//     public List<Album> Deserializza(string percorsoAlbumFile)
-//     {
-
-//         // Leggo il contenuto del file e lo assegno alla variabile contenuto
-//         var contenuto = File.ReadAllText(percorsoAlbumFile);
-//         // Deserializzo contenuto in una lista di oggetti di tipo album sulla variabile elenco
-//         var elenco = JsonConvert.DeserializeObject<List<Album>>(contenuto);
-
-//         if (elenco == null)
-//         {
-//             throw new JsonException("Deserializzazione tornata null");
-//         }
-
-//         return elenco;
-//     }
-//     */
-
-
-//     // Ritorna l'elenco di tutti gli album
-//     public Album GetAll()
-//     {
-//         // Creo una lista di oggetti album vuota
-//         album = Deserialize();
-//         // Ciclo gli elementi della lista album privata e li aggiungo alla lista album pubblica
-//         foreach (var album in _percorsoAlbumFile)
-//         {
-//             return album;
-//         }
-//         return null;
-//     }
-
-//     // Ritorna una lista di oggetti di tipo album che corrisponde alla ricerca effettuata dall'utente(per nome)
-//     public Album GetByID(int id)
-//     {
-
-//         foreach (var album in _percorsoAlbumFile)
-//         {
-//             if (album.Id == id)
-//             {
-//                 return album;
-//             }
-//         }
-//         return null; // or throw an exception
-//     }
-
-//     // public Album GetByName(string lamiastringainentrata)
-//     // {
-//     //     var albumScelto = GetAll();
-//     //     foreach (var album in album)
-//     //     {
-//     //         // Solo se il mio titolo è uguale alla scelta utente aggiungo e restituisco
-//     //         if (album.Titolo == lamiastringainentrata)
-//     //         {
-//     //             return album;
-//     //         }
-//     //     }
-//     //     return null;
-//     // }
-//     // 
-//     // public void Delete(int AlbumId)
-//     // {
-
-//     // }
-
-//     // public Album Aggiungi(Album newAlbum, string FileName)
-//     // {
-//     //     newAlbum.Titolo = FileName;
-//     //     _album.Add(newAlbum);
-
-//     //     return newAlbum;
-//     // }
-// }
-
 using BackendMusic.Models;
 using Newtonsoft.Json;
 
@@ -134,13 +5,19 @@ namespace BackendMusic.Services
 {
     public class AlbumService
     {
-        private readonly string _percorsoAlbumFile;
-        private List<Album> _album = new List<Album>();
+        private readonly string _percorsoAlbumFile; // Path privato di sola lettura del file JSON contenente gli album
+        private List<Album> _album = new List<Album>(); // Lista privata contenente gli albums, inizializzata vuota e successivamente popolata 
 
+        // Costruttore che inizializza il percorso del file JSON e carica gli album
+        // Utilizza un file di configurazione per ottenere il percorso del file JSON
         public AlbumService(string percorsoAlbumFile = "Json/Album.json")
         {
-            _percorsoAlbumFile = percorsoAlbumFile;
+            // Inizializza il percorso del file JSON da un file di configurazione
+            _percorsoAlbumFile = "config.txt";
+            string[] righe = File.ReadAllLines(_percorsoAlbumFile);
+            _percorsoAlbumFile = righe[0];
 
+            // Controlla se il file esiste, altrimenti lancia un'eccezione
             if (!File.Exists(_percorsoAlbumFile))
                 throw new FileNotFoundException("File non trovato", _percorsoAlbumFile);
 
@@ -149,30 +26,50 @@ namespace BackendMusic.Services
             _album = elenco ?? new List<Album>();
         }
 
+        // Metodo per deserializzare il file JSON con controllo dell'esistenza del file
+        public List<Album> Deserialize()
+        {
+            if (!File.Exists(_percorsoAlbumFile))
+            {
+                // questo metodo mi permette di gestire l'eccezione
+                throw new FileNotFoundException("File non trovato", _percorsoAlbumFile);
+            }
+
+            var json = File.ReadAllText(_percorsoAlbumFile);
+            // Deserializzo contenuto in una lista di oggetti di tipo album sulla variabile elenco
+            var elenco = JsonConvert.DeserializeObject<List<Album>>(json);
+            return elenco ?? new List<Album>();
+        }
+
+        // Metodo per ottenere gli album
         public List<Album> GetAll()
         {
-            _album = Deserialize();
+            _album = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album e lo ritorna
             return _album;
         }
-
+        // Metodo per ottenere un album tramite ID
         public Album GetByID(int id)
         {
-            var albumList = Deserialize();
-            return albumList.FirstOrDefault(a => a.Id == id);
+            var albumList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album
+            return albumList.FirstOrDefault(a => a.Id == id); // Ritorna il primo album che corrisponde all'ID specificato
         }
-
+        // Metodo per ottenere un album tramite nome
         public Album GetByName(string nome)
         {
-            var albumList = Deserialize();
-            return albumList.FirstOrDefault(a => a.Titolo.Equals(nome, StringComparison.OrdinalIgnoreCase));
+            var albumList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album
+            return albumList.FirstOrDefault(a => a.Titolo.Equals(nome, StringComparison.OrdinalIgnoreCase)); // Ritorna il primo album corrispondente al Titolo specificato
         }
-
+        // Metodo per aggiungere un nuovo album
         public Album Aggiungi(Album nuovoAlbum)
         {
-            var elenco = Deserialize();
+            var elenco = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album
+            // Se riceve dal Body un id == 0 allora ne genera uno nuovo univoco
             if (nuovoAlbum.Id == 0)
             {
-                int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1;
+                // Genera un nuovo ID univoco
+                // Controlla se la lista è vuota, altrimenti prende il massimo ID esistente e aggiunge 1 altrimenti mette 1
+                // Any è un metodo LINQ che verifica se la lista contiene elementi
+                int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1; 
                 nuovoAlbum.Id = nuovoId;
             }
             elenco.Add(nuovoAlbum);
@@ -180,26 +77,25 @@ namespace BackendMusic.Services
             File.WriteAllText(_percorsoAlbumFile, json);
             return nuovoAlbum;
         }
+        // Metodo per trovare le canzoni tramite un id all'interno di un album
         public List<Canzone> GetCanzoniByAlbumID(int id)
         {
             var album = GetByID(id);
-            return album?.Canzoni ?? new List<Canzone>();
+            return album?.Canzoni ?? new List<Canzone>(); // Ritorna la lista di canzoni dell'album oppure ritorna una lista vuota se l'album non esiste
         }
+        // Metodo per eliminare un album
         public void Delete(int id)
         {
-            var albumList = Deserialize();
+            var albumList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album
             var albumToRemove = albumList.FirstOrDefault(a => a.Id == id);
+            // Se l'album da rimuovere esiste nella lista
             if (albumToRemove != null)
             {
+                // Rimuove l'album dalla lista
                 albumList.Remove(albumToRemove);
                 var json = JsonConvert.SerializeObject(albumList, Formatting.Indented);
                 File.WriteAllText(_percorsoAlbumFile, json);
             }
         }
     }
-
 }
-
-
-
-

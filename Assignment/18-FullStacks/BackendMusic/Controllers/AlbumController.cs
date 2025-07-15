@@ -3,7 +3,7 @@ using BackendMusic.Services;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/album")]
+[Route("api/[controller]")]
 
 public class AlbumController : ControllerBase
 {
@@ -13,7 +13,7 @@ public class AlbumController : ControllerBase
         _service = service; //?? throw new ArgumentNullException(nameof(service));
     }
 
-
+    
     [HttpGet]
     public ActionResult<List<Album>> Get()
     {

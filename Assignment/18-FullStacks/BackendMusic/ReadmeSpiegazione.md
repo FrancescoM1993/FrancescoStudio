@@ -17,6 +17,10 @@
   - [Route `api/album/{id}/canzoni`](#route-apialbumidcanzoni)
   - [Route POST `api/album`](#route-post-apialbum)
   - [Route DELETE `api/album/{id}`](#route-delete-apialbumid)
+  - [Route `api/utenti`](#route-apiutenti)
+  - [Route `api/utenti/{id}`](#route-apiutenti)
+  - [Route POST `api/utenti`](#route-post-apiutenti)
+  - [Route DELETE `api/utenti`](#route-delete-apiutenti)
 ## Descrizione
 Applicazione per gestire un archivio di album musicali e relative canzoni salvate in un file JSON.
 
@@ -24,7 +28,7 @@ Applicazione per gestire un archivio di album musicali e relative canzoni salvat
 Il progetto è organizzato in tre principali componenti:
 
 - Model: contiene le classi `Album` e `Canzone` che rappresentano la struttura dei dati.
-- Service: contiene la classe `AlbumService` che si occupa di leggere/scrivere i dati su file JSON e di fornire      
+- Service: contiene la classe `AlbumService` che si occupa di leggere/scrivere i dati su file JSON e di fornire
   metodi per operazioni CRUD sugli album.
 - Controller: Gestisce la comunicazione tra utente e service usando la classe controllerbase `ControllerBase`.
 
@@ -399,6 +403,7 @@ Route DELETE `api/album/{id}`: Cancella un Album tramite ID. Se va a buon fine r
 ## UtenteService.cs
 
 ```c#
+
 using BackendMusic.Models;
 using Newtonsoft.Json;
 
@@ -406,15 +411,19 @@ namespace BackendMusic.Services
 {
     public class UtenteService
     {
-        private readonly string _percorsoUtenteFile;
-        private List<Utente> _utenti = new List<Utente>();
+        private readonly string _percorsoUtenteFile;  // Path privato di sola lettura del file JSON contenente gli utenti
+        private List<Utente> _utenti = new List<Utente>(); // Lista privata contenente gli utenti, inizializzata vuota e successivamente popolata 
 
+        // Costruttore che inizializza il percorso del file JSON e carica gli album
+        // Utilizza un file di configurazione per ottenere il percorso del file JSON
         public UtenteService(string percorsoUtenteFile = "Json/Utenti.json")
         {
+            // Inizializza il percorso del file JSON da un file di configurazione
             _percorsoUtenteFile = "config.txt";
             string[] righe = File.ReadAllLines(_percorsoUtenteFile);
             _percorsoUtenteFile = righe[1];
 
+            // Controlla se il file esiste, altrimenti lancia un'eccezione
             if (!File.Exists(_percorsoUtenteFile))
                 throw new FileNotFoundException("File non trovato", _percorsoUtenteFile);
 
@@ -423,6 +432,7 @@ namespace BackendMusic.Services
             _utenti = elenco ?? new List<Utente>();
         }
 
+        // Metodo per deserializzare il file JSON con controllo dell'esistenza del file
         public List<Utente> Deserialize()
         {
             string percorsoUtenteFile = "Json/Utenti.json";
@@ -439,22 +449,30 @@ namespace BackendMusic.Services
             return elenco ?? new List<Utente>();
         }
 
-        public List<Utente> GetAll()
+        // Metodo per ottenere gli utenti
+        public List<Utente> GetAll() // Deserializzo il file JSON per ottenere la lista degli utenti e lo ritorna
         {
             return _utenti;
         }
 
+        // Metodo per ottenere un utente tramite ID
         public Utente GetByID(int id)
         {
-            var utenteList = Deserialize();
-            return utenteList.FirstOrDefault(u => u.Id == id);
+            var utenteList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli utenti
+            return utenteList.FirstOrDefault(u => u.Id == id); // Ritorna il primo utente che corrisponde all'ID specificato
         }
 
+
+        // Metodo per aggiungere un nuovo utente
         public Utente Aggiungi(Utente nuovoUtente)
         {
-           var elenco = Deserialize();
+            var elenco = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli utenti
+            // Se riceve dal Body un id == 0 allora ne genera uno nuovo univoco
             if (nuovoUtente.Id == 0)
             {
+                // Genera un nuovo ID univoco
+                // Controlla se la lista è vuota, altrimenti prende il massimo ID esistente e aggiunge 1 altrimenti mette 1
+                // Any è un metodo LINQ che verifica se la lista contiene elementi
                 int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1;
                 nuovoUtente.Id = nuovoId;
             }
@@ -464,12 +482,16 @@ namespace BackendMusic.Services
             return nuovoUtente;
         }
 
+        // Metodo per eliminare un utente
         public void Delete(int id)
         {
-            var utenteList = Deserialize();
+            var utenteList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli utenti
             var utenteToRemove = utenteList.FirstOrDefault(u => u.Id == id);
+
+            // Se l'utente da rimuovere esiste nella lista
             if (utenteToRemove != null)
             {
+                // Rimuove l'utente dalla lista
                 utenteList.Remove(utenteToRemove);
                 var json = JsonConvert.SerializeObject(utenteList, Formatting.Indented);
                 File.WriteAllText(_percorsoUtenteFile, json);
@@ -477,7 +499,134 @@ namespace BackendMusic.Services
         }
     }
 }
+
 ```
 
+## UtentiController.cs
 
+```c#
+using BackendMusic.Models;
+using BackendMusic.Services;
+using Microsoft.AspNetCore.Mvc;
 
+[ApiController]
+[Route("api/[controller]")]
+
+public class UtentiController : ControllerBase
+{
+    private readonly UtenteService _service;
+    public UtentiController(UtenteService service)
+    {
+        _service = service;
+    }
+
+    [HttpGet]
+    public ActionResult<List<Utente>> Get()
+    {
+        List<Utente> utenti = _service.Deserialize();
+        return Ok(utenti);
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<Utente> GetByID(int id)
+    {
+        var utente = _service.GetByID(id);
+
+        if (utente == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(utente);
+    }
+
+    [HttpPost]
+    public ActionResult<Utente> Aggiungi([FromBody] Utente nuovoUtente)
+    {
+        if (nuovoUtente == null)
+        {
+            return BadRequest("Utente non può essere null");
+        }
+
+        var addedUtente = _service.Aggiungi(nuovoUtente);
+        return CreatedAtAction(nameof(Get), new { id = addedUtente.Id }, addedUtente);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        try
+        {
+            _service.Delete(id);
+            return NoContent();
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+    }
+}
+```
+
+### Route `api/utenti`
+Route `api/utenti`: Restituisce la lista di tutti gli utenti. 
+```c#
+[HttpGet]
+    public ActionResult<List<Utente>> Get()
+    {
+        List<Utente> utenti = _service.Deserialize();
+        return Ok(utenti);
+    }
+
+```
+
+### Route `api/utenti/{id}`
+Route `api/utenti/{id}`: Restituisce un utente specifico in base all'ID. Se l'utente non esiste, restituisce un errore 404 Not Found.
+```c#
+[HttpGet("{id}")]
+    public ActionResult<Utente> GetByID(int id)
+    {
+        var utente = _service.GetByID(id);
+
+        if (utente == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(utente);
+    }
+```
+
+### Route POST `api/utenti`
+Route POST `api/utenti`: Aggiunge un nuovo utente. Se il corpo in POST è vuoto allora ritorna una risposta 400 altrimenti crea l'album
+```c#
+[HttpPost]
+    public ActionResult<Utente> Aggiungi([FromBody] Utente nuovoUtente)
+    {
+        if (nuovoUtente == null)
+        {
+            return BadRequest("Utente non può essere null");
+        }
+
+        var addedUtente = _service.Aggiungi(nuovoUtente);
+        return CreatedAtAction(nameof(Get), new { id = addedUtente.Id }, addedUtente);
+    }
+```
+
+### Route DELETE `api/utenti/{id}`
+Route DELETE `api/utenti/{id}`: Cancella un Utente tramite ID. Se va a buon fine ritorna una risposta 204, altrimenti manda una risposta 404
+```c#
+[HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        try
+        {
+            _service.Delete(id);
+            return NoContent();
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+    }
+```

@@ -30,9 +30,9 @@ public class PurchasesController : ControllerBase
         // Elenco dei purchases
         List<Purchase> purchases = _service.GetAll();
         // Elenco dei utenti
-        List<User> users = _service.GetAll();
+        List<User> users = _userService.GetAll();
         // Elenco dei prodotti
-        List<Product> products = _service.GetAll();
+        List<Product> products = _productService.GetAll();
         // Creo una lista di PurchaseDTO
         List<PurchaseDTO> result = new List<PurchaseDTO>();
         // Ciclo su ogni acquisto in modo da ottenere lo user e il prodotto assiociati

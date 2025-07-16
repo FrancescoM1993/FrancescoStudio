@@ -5,6 +5,7 @@
 - [Struttura del progetto](#struttura-del-progetto)
 - [Funzionalità principali](#funzionalità-principali)
 - [Come usare](#come-usare)
+- [Program](#program)
 - [Models](#models)
   - [Album.cs](#albumcs)
   - [Canzone.cs](#canzonecs)
@@ -17,10 +18,11 @@
   - [Route `api/album/{id}/canzoni`](#route-apialbumidcanzoni)
   - [Route POST `api/album`](#route-post-apialbum)
   - [Route DELETE `api/album/{id}`](#route-delete-apialbumid)
+- [UtentiController.cs](#utenticontrollerscs)
   - [Route `api/utenti`](#route-apiutenti)
   - [Route `api/utenti/{id}`](#route-apiutenti)
   - [Route POST `api/utenti`](#route-post-apiutenti)
-  - [Route DELETE `api/utenti`](#route-delete-apiutenti)
+  - [Route DELETE `api/utenti/{id}`](#route-delete-apiutentiid)
 ## Descrizione
 Applicazione per gestire un archivio di album musicali e relative canzoni salvate in un file JSON.
 
@@ -53,6 +55,65 @@ Il progetto è organizzato in tre principali componenti:
 - Newtonsoft.Json per la serializzazione/deserializzazione JSON
 - File system per la persistenza dati
 - using Microsoft.AspNetCore.Mvc; per la gestione dei controller
+
+## Program
+```c#
+using BackendMusic.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+var builder = WebApplication.CreateBuilder(args);
+
+// Aggiungi i Controller 
+// I Controller sono responsabili alla gestione delle richieste HTTP e della restituzione delle risposte.
+
+builder.Services.AddControllers();
+
+// Registro il servizio in memoria per i prodotti
+// Vado a simulare un archivio di dati 
+
+builder.Services.AddSingleton<AlbumService>();
+builder.Services.AddSingleton<UtenteService>();
+
+// Configurare CORS per permettere tutte le origini (sviluppo locale)
+// Cross Origin Resource Sharing, è una politica di sicurezza che permette o blocca le richieste tra domini diversi
+
+builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    }
+);
+
+var app = builder.Build();
+
+// parte riguardante la configurazione dell'applicazione con l'uso di middleware
+
+// il middleware è un componente che gestisce una funzionalità specifica dell'applicazione
+
+// Middleware HTTPS e CORS
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseHttpsRedirection();
+
+app.UseCors();
+
+// Mappa i controller API 
+// Mappa le rotte dei controller API per gestire le richieste HTTP
+
+app.MapControllers();
+
+app.Run();
+```
 
 ## Models
 

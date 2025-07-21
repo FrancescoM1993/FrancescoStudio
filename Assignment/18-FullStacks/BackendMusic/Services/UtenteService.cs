@@ -56,8 +56,8 @@ namespace BackendMusic.Services
         // Metodo per ottenere un utente tramite ID
         public Utente GetByID(int id)
         {
-            var utenteList = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli utenti
-            return utenteList.FirstOrDefault(u => u.Id == id); // Ritorna il primo utente che corrisponde all'ID specificato
+            // Deserializzo il file JSON per ottenere la lista degli utenti
+            return _utenti.FirstOrDefault(u => u.Id == id); // Ritorna il primo utente che corrisponde all'ID specificato
         }
 
 

@@ -16,7 +16,7 @@ public class UtentiController : ControllerBase
     [HttpGet]
     public ActionResult<List<Utente>> Get()
     {
-        List<Utente> utenti = _service.Deserialize();
+        List<Utente> utenti = _service.GetAll(); // Da rivedere
         return Ok(utenti);
     }
 

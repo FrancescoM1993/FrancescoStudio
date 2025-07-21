@@ -1,5 +1,6 @@
 
 using BackendMusic.Models;
+using BackendMusic.Utils;
 using Newtonsoft.Json;
 
 namespace BackendMusic.Services
@@ -7,24 +8,26 @@ namespace BackendMusic.Services
     public class UtenteService
     {
         private readonly string _percorsoUtenteFile;  // Path privato di sola lettura del file JSON contenente gli utenti
-        private List<Utente> _utenti = new List<Utente>(); // Lista privata contenente gli utenti, inizializzata vuota e successivamente popolata 
+        private List<Utente> _utenti = new List<Utente>(); // Lista privata contenente gli utenti, inizializzata vuota e successivamente popolata
 
         // Costruttore che inizializza il percorso del file JSON e carica gli album
         // Utilizza un file di configurazione per ottenere il percorso del file JSON
-        public UtenteService(string percorsoUtenteFile = "Json/Utenti.json")
+        public UtenteService(string percorsoUtenteFile = "Json/Utenti")
         {
             // Inizializza il percorso del file JSON da un file di configurazione
-            _percorsoUtenteFile = "config.txt";
-            string[] righe = File.ReadAllLines(_percorsoUtenteFile);
-            _percorsoUtenteFile = righe[1];
+            // _percorsoUtenteFile = "config.txt";
+            // string[] righe = File.ReadAllLines(_percorsoUtenteFile);
+            // _percorsoUtenteFile = righe[1];
 
             // Controlla se il file esiste, altrimenti lancia un'eccezione
-            if (!File.Exists(_percorsoUtenteFile))
-                throw new FileNotFoundException("File non trovato", _percorsoUtenteFile);
+            // if (!File.Exists(_percorsoUtenteFile))
+            //     throw new FileNotFoundException("File non trovato", _percorsoUtenteFile);
 
-            var json = File.ReadAllText(_percorsoUtenteFile);
-            var elenco = JsonConvert.DeserializeObject<List<Utente>>(json);
-            _utenti = elenco ?? new List<Utente>();
+            // var json = File.ReadAllText(_percorsoUtenteFile);
+            // var elenco = JsonConvert.DeserializeObject<List<Utente>>(json);
+            // _utenti = elenco ?? new List<Utente>();
+
+            _utenti = JsonFileHelper.LoadList<Utente>(_percorsoUtenteFile);
         }
 
         // Metodo per deserializzare il file JSON con controllo dell'esistenza del file
@@ -72,6 +75,7 @@ namespace BackendMusic.Services
                 nuovoUtente.Id = nuovoId;
             }
             elenco.Add(nuovoUtente);
+            Save();
             var json = JsonConvert.SerializeObject(elenco, Formatting.Indented);
             File.WriteAllText(_percorsoUtenteFile, json);
             return nuovoUtente;
@@ -88,9 +92,15 @@ namespace BackendMusic.Services
             {
                 // Rimuove l'utente dalla lista
                 utenteList.Remove(utenteToRemove);
+                Save();
                 var json = JsonConvert.SerializeObject(utenteList, Formatting.Indented);
                 File.WriteAllText(_percorsoUtenteFile, json);
             }
+        }
+
+        public void Save()
+        {
+            JsonFileHelper.SaveList("Json/Utenti.json", _utenti);
         }
     }
 }

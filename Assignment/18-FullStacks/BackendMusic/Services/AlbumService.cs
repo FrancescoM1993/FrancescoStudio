@@ -6,7 +6,7 @@ namespace BackendMusic.Services
     public class AlbumService
     {
         private readonly string _percorsoAlbumFile; // Path privato di sola lettura del file JSON contenente gli album
-        private List<Album> _album = new List<Album>(); // Lista privata contenente gli albums, inizializzata vuota e successivamente popolata 
+        private List<Album> _album = new List<Album>(); // Lista privata contenente gli albums, inizializzata vuota e successivamente popolata
 
         // Costruttore che inizializza il percorso del file JSON e carica gli album
         // Utilizza un file di configurazione per ottenere il percorso del file JSON
@@ -69,7 +69,7 @@ namespace BackendMusic.Services
                 // Genera un nuovo ID univoco
                 // Controlla se la lista è vuota, altrimenti prende il massimo ID esistente e aggiunge 1 altrimenti mette 1
                 // Any è un metodo LINQ che verifica se la lista contiene elementi
-                int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1; 
+                int nuovoId = elenco.Any() ? elenco.Max(a => a.Id) + 1 : 1;
                 nuovoAlbum.Id = nuovoId;
             }
             elenco.Add(nuovoAlbum);
@@ -97,5 +97,7 @@ namespace BackendMusic.Services
                 File.WriteAllText(_percorsoAlbumFile, json);
             }
         }
+
+        
     }
 }

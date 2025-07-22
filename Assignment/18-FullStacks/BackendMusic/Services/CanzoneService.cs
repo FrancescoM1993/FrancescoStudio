@@ -71,18 +71,10 @@ namespace BackendMusic.Services
             {
                 throw new ArgumentException("Il titolo non può essere vuoto", nameof(nuovaCanzone.Titolo));
             }
-            if (ValidationHelper.IsNullOrWhiteSpace(nuovaCanzone.Autore))
-            {
-                throw new ArgumentException("L'autore non può essere vuoto", nameof(nuovaCanzone.Autore));
-            }
-            if (nuovaCanzone.Anno <= 0)
-            {
-                throw new ArgumentException("L'anno deve essere un valore positivo", nameof(nuovaCanzone.Anno));
-            }
             // Genera un nuovo ID univoco per la canzone
             // Controlla se l'ID generato è già presente nella lista delle canzoni
             int nuovoId = IdGenerator.GetNextId(_canzoni); // Genera un nuovo ID univoco per la canzone
-                                                         // Controlla se l'ID generato è già presente nella lista delle canzoni
+                                                           // Controlla se l'ID generato è già presente nella lista delle canzoni
             nuovaCanzone.Id = nuovoId;
             _canzoni.Add(nuovaCanzone);
             LoggerHelper.Log($"Aggiunta Nuova Canzone: {nuovaCanzone.Id} - {nuovaCanzone.Titolo}");
@@ -102,53 +94,7 @@ namespace BackendMusic.Services
             {
                 throw new ArgumentException("Il titolo non può essere vuoto", nameof(updatedCanzone.Titolo));
             }
-            if (ValidationHelper.IsNullOrWhiteSpace(updatedCanzone.Autore))
-            {
-                throw new ArgumentException("L'autore non può essere vuoto", nameof(updatedCanzone.Autore));
-            }
-            if (updatedCanzone.Anno <= 0)
-            {
-                throw new ArgumentException("L'anno deve essere un valore positivo", nameof(updatedCanzone.Anno));
-            }
-            var canzoneToUpdate = _canzoni.FirstOrDefault(c => c.Id == id);
-            if (canzoneToUpdate != null)
-            {
-                // Aggiorna le proprietà della canzone esistente con quelle della nuova canzone
-                canzoneToUpdate.Titolo = updatedCanzone.Titolo;
-                canzoneToUpdate.Anno = updatedCanzone.Anno;
-                canzoneToUpdate.Durata = updatedCanzone.Durata;
-
-                Save();
-                return canzoneToUpdate; // Ritorna la canzone aggiornata
-            }
-
-            return null; // Ritorna null se la canzone non esiste
-        }
-
-        // Metodo per eliminare un album
-        public void Delete(int id)
-        {
-            // Deserializzo il file JSON per ottenere la lista degli album
-            var canzoneToRemove = _canzoni.FirstOrDefault(c => c.Id == id);
-
-            // Se la canzone da rimuovere esiste nella lista
-            if (canzoneToRemove != null)
-            {
-                _canzoni.Remove(canzoneToRemove);
-                Save();
-            }
-            if (ValidationHelper.IsNullOrWhiteSpace(updatedCanzone.Titolo))
-            {
-                throw new ArgumentException("Il titolo non può essere vuoto", nameof(updatedCanzone.Titolo));
-            }
-            if (ValidationHelper.IsNullOrWhiteSpace(updatedCanzone.Autore))
-            {
-                throw new ArgumentException("L'autore non può essere vuoto", nameof(updatedCanzone.Autore));
-            }
-            if (updatedCanzone.Anno <= 0)
-            {
-                throw new ArgumentException("L'anno deve essere un valore positivo", nameof(updatedCanzone.Anno));
-            }
+            
             var canzoneToUpdate = _canzoni.FirstOrDefault(c => c.Id == id);
             if (canzoneToUpdate != null)
             {
@@ -164,31 +110,16 @@ namespace BackendMusic.Services
             return null; // Ritorna null se la canzone non esiste
         }
 
-        // Metodo per eliminare una canzone
+        // Metodo per eliminare un album
         public void Delete(int id)
         {
-            // Deserializzo il file JSON per ottenere la lista delle canzoni
-            var canzoneToRemove = _canzoni.FirstOrDefault(c => c.Id == id);
-
-            // Se la canzone da rimuovere esiste nella lista
-            if (canzoneToRemove != null)
+            var canzoneToDelete = _canzoni.FirstOrDefault(c => c.Id == id);
+            if (canzoneToDelete != null)
             {
-                // Rimuove la canzone dalla lista
-                _canzoni.Remove(canzoneToRemove);
+                _canzoni.Remove(canzoneToDelete);
+                LoggerHelper.Log($"Cancellata Canzone: {canzoneToDelete.Id} - {canzoneToDelete.Titolo}");
                 Save();
-                //var json = JsonConvert.SerializeObject(utenteList, Formatting.Indented);
-                //File.WriteAllText(_percorsoUtenteFile, json);
             }
-            /*
-            if (canzoneToRemove != null)
-            {
-                LoggerHelper.Log($"Cancellata Canzone: {canzoneToRemove.Id}");
-            }
-            else
-            {
-                LoggerHelper.Log($"Prova di Cancellazione Canzone: {canzoneToRemove.Id}");
-            }
-            */
         }
 
         public void Save()

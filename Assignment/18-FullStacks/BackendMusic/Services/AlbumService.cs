@@ -165,7 +165,7 @@ namespace BackendMusic.Services
 curl -X POST http://localhost:5017/api/album \
   -H "Content-Type: application/json" \
   -d '{
-    "titolo": "Titolo Album",
+    "titolo": "",
     "anno": 2023,
     "autore": "Nome Autore",
     "genere": "Rock"

@@ -1,7 +1,7 @@
 namespace BackendMusic.Utils
 {
     // Questa classe statica si occupa di tracciare le operazioni che avvengono nel sito
-    //
+    
     public static class LoggerHelper
     {
         // Log fatto a mano

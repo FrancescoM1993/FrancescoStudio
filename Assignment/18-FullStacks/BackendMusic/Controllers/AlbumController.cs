@@ -17,7 +17,7 @@ public class AlbumController : ControllerBase
     [HttpGet]
     public ActionResult<List<Album>> Get()
     {
-        List<Album> Albums = _service.Deserialize();
+        List<Album> Albums = _service.GetAll();
         return Ok(Albums);
     }
 
@@ -34,18 +34,21 @@ public class AlbumController : ControllerBase
 
         return Ok(album); // This ensures you return 200 with the album object
     }
-
-    [HttpGet("{id}/canzoni")]
-    public ActionResult<List<Canzone>> GetCanzoniByAlbumID(int id)
+    [HttpPut("{id}")]
+    public ActionResult<Album> Update(int id, [FromBody] Album updatedAlbum)
     {
-        var canzoni = _service.GetCanzoniByAlbumID(id);
+        if (updatedAlbum == null)
+        {
+            return BadRequest("Album non può essere null");
+        }
 
-        if (canzoni == null || !canzoni.Any())
+        var album = _service.Update(id, updatedAlbum);
+        if (album == null)
         {
             return NotFound();
         }
 
-        return Ok(canzoni);
+        return Ok(album);
     }
 
     [HttpPost]

@@ -32,6 +32,22 @@ public class UtentiController : ControllerBase
 
         return Ok(utente);
     }
+    [HttpPut("{id}")]
+    public ActionResult<Utente> Update(int id, [FromBody] Utente updatedUtente)
+    {
+        if (updatedUtente == null)
+        {
+            return BadRequest("Utente non può essere null");
+        }
+
+        var utente = _service.Update(id, updatedUtente);
+        if (utente == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(utente);
+    }
 
     [HttpPost]
     public ActionResult<Utente> Aggiungi([FromBody] Utente nuovoUtente)

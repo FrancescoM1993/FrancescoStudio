@@ -82,6 +82,26 @@ namespace BackendMusic.Services
             return nuovoUtente;
         }
 
+        // Metodo per aggiornare un utente esistente
+        public Utente Update(int id, Utente updatedUtente)
+        {
+            // Deserializzo il file JSON per ottenere la lista degli utenti
+            var utente = _utenti.FirstOrDefault(u => u.Id == id);
+            if (utente == null)
+            {
+                return null; // Se l'utente non esiste, ritorna null
+            }
+
+            // Aggiorna le proprietà dell'utente esistente con quelle del nuovo utente
+            utente.Nome = updatedUtente.Nome;
+            utente.Cognome = updatedUtente.Cognome;
+            //utente.InformazioniUtente = updatedUtente.InformazioniUtente;
+
+            LoggerHelper.Log($"Aggiornato Utente: {utente.Id} - {utente.Nome}");
+            Save();
+            return utente;
+        }
+
         // Metodo per eliminare un utente
         public void Delete(int id)
         {

@@ -64,20 +64,28 @@ namespace BackendMusic.Services
         // Metodo per aggiungere un nuovo utente
         public Utente Aggiungi(Utente nuovoUtente)
         {
-            //var elenco = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli utenti
-            // Se riceve dal Body un id == 0 allora ne genera uno nuovo univoco
-
-            if (nuovoUtente.Id == 0)
+            // Uso il ValidationHelper per validare i dati dell'utente
+            if (nuovoUtente == null )
             {
-                // Genera un nuovo ID univoco
-                // Controlla se la lista è vuota, altrimenti prende il massimo ID esistente e aggiunge 1 altrimenti mette 1
-                // Any è un metodo LINQ che verifica se la lista contiene elementi
-                int nuovoId = _utenti.Any() ? _utenti.Max(u => u.Id) + 1 : 1;
-                nuovoUtente.Id = nuovoId;
+                throw new ArgumentNullException(nameof(nuovoUtente), "L'utente non può essere null");
             }
+            if (ValidationHelper.IsNullOrWhiteSpace(nuovoUtente.Nome))
+            {
+                throw new ArgumentException("Il nome non può essere vuoto", nameof(nuovoUtente.Nome));
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(nuovoUtente.Cognome))
+            {
+                throw new ArgumentException("Il cognome non può essere vuoto", nameof(nuovoUtente.Cognome));
+            }
+            // if (!ValidationHelper.IsValidEmail(nuovoUtente.InformazioniUtente.Email))
+            // {
+            //     throw new ArgumentException("L'email non è valida", nameof(nuovoUtente.InformazioniUtente.Email));
+            // }
+
+            int nuovoId = IdGenerator.GetNextId(_utenti); // Genera un nuovo ID univoco per l'utente
+            nuovoUtente.Id = nuovoId;
             _utenti.Add(nuovoUtente);
             LoggerHelper.Log($"Aggiunto Nuovo Utente: {nuovoUtente.Id} - {nuovoUtente.Nome}");
-            //LoggerHelper.Log($"Aggiunto Nuovo Utente: {nuovoUtente.Nome}");
             Save();
             return nuovoUtente;
         }
@@ -85,7 +93,23 @@ namespace BackendMusic.Services
         // Metodo per aggiornare un utente esistente
         public Utente Update(int id, Utente updatedUtente)
         {
-            // Deserializzo il file JSON per ottenere la lista degli utenti
+            if (updatedUtente == null)
+            {
+                throw new ArgumentNullException(nameof(updatedUtente), "L'utente non può essere null");
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(updatedUtente.Nome))
+            {
+                throw new ArgumentException("Il nome non può essere vuoto", nameof(updatedUtente.Nome));
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(updatedUtente.Cognome))
+            {
+                throw new ArgumentException("Il cognome non può essere vuoto", nameof(updatedUtente.Cognome));
+            }
+            // if (!ValidationHelper.IsValidEmail(nuovoUtente.InformazioniUtente.Email))
+            // {
+            //     throw new ArgumentException("L'email non è valida", nameof(nuovoUtente.InformazioniUtente.Email));
+            // }
+            
             var utente = _utenti.FirstOrDefault(u => u.Id == id);
             if (utente == null)
             {

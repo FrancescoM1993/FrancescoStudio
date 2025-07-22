@@ -1,4 +1,4 @@
-
+using BackendMusic.Utils;
     public class InformazioniUtente
     {
         public string Email { get; set; }

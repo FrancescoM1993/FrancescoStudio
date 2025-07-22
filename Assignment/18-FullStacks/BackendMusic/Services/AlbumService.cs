@@ -64,17 +64,27 @@ namespace BackendMusic.Services
         // Metodo per aggiungere un nuovo album
         public Album Aggiungi(Album nuovoAlbum)
         {
-            //var elenco = Deserialize(); // Deserializzo il file JSON per ottenere la lista degli album
-            // Se riceve dal Body un id == 0 allora ne genera uno nuovo univoco
-
-            if (nuovoAlbum.Id == 0)
+            if (nuovoAlbum == null)
             {
-                // Genera un nuovo ID univoco
-                // Controlla se la lista è vuota, altrimenti prende il massimo ID esistente e aggiunge 1 altrimenti mette 1
-                // Any è un metodo LINQ che verifica se la lista contiene elementi
-                int nuovoId = _album.Any() ? _album.Max(a => a.Id) + 1 : 1;
-                nuovoAlbum.Id = nuovoId;
+                throw new ArgumentNullException(nameof(nuovoAlbum), "L'album non può essere null");
             }
+            if (ValidationHelper.IsNullOrWhiteSpace(nuovoAlbum.Titolo))
+            {
+                throw new ArgumentException("Il titolo non può essere vuoto", nameof(nuovoAlbum.Titolo));
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(nuovoAlbum.Autore))
+            {
+                throw new ArgumentException("L'autore non può essere vuoto", nameof(nuovoAlbum.Autore));
+            }
+            if (nuovoAlbum.Anno <= 0)
+            {
+                throw new ArgumentException("L'anno deve essere un valore positivo", nameof(nuovoAlbum.Anno));
+            }
+            // Genera un nuovo ID univoco per l'album
+            // Controlla se l'ID generato è già presente nella lista degli album
+            int nuovoId = IdGenerator.GetNextId(_album); // Genera un nuovo ID univoco per l'album
+                                                         // Controlla se l'ID generato è già presente nella lista degli album
+            nuovoAlbum.Id = nuovoId;
             _album.Add(nuovoAlbum);
             LoggerHelper.Log($"Aggiunto Nuovo Album: {nuovoAlbum.Id} - {nuovoAlbum.Titolo}");
             //LoggerHelper.Log($"Aggiunto Nuovo Utente: {nuovoUtente.Nome}");
@@ -85,10 +95,23 @@ namespace BackendMusic.Services
         // Metodo per aggiornare un utente esistente
         public Album Update(int id, Album updatedAlbum)
         {
-            // Deserializzo il file JSON per ottenere la lista degli album
+            if (updatedAlbum == null)
+            {
+                throw new ArgumentNullException(nameof(updatedAlbum), "L'album non può essere null");
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(updatedAlbum.Titolo))
+            {
+                throw new ArgumentException("Il titolo non può essere vuoto", nameof(updatedAlbum.Titolo));
+            }
+            if (ValidationHelper.IsNullOrWhiteSpace(updatedAlbum.Autore))
+            {
+                throw new ArgumentException("L'autore non può essere vuoto", nameof(updatedAlbum.Autore));
+            }
+            if (updatedAlbum.Anno <= 0)
+            {
+                throw new ArgumentException("L'anno deve essere un valore positivo", nameof(updatedAlbum.Anno));
+            }
             var albumToUpdate = _album.FirstOrDefault(a => a.Id == id);
-
-            // Se l'album da aggiornare esiste nella lista
             if (albumToUpdate != null)
             {
                 // Aggiorna le proprietà dell'album esistente con quelle del nuovo album
@@ -140,22 +163,11 @@ namespace BackendMusic.Services
 
 /*
 curl -X POST http://localhost:5017/api/album \
--H "Content-Type: application/json" \
--d'{
-"titolo": "Album di Prova",
-"artista": "Artista Sconosciuto",
-"anno": 2023,
-"genere": "Pop"
-}
-'
-
-
-"informazioniUtente": {
-"email": "luigi.verdi@example.com",
-"indirizzo": "Via Milano 2",
-"citta": "Torino",
-"cap": 10100
-}
-}
-'
+  -H "Content-Type: application/json" \
+  -d '{
+    "titolo": "Titolo Album",
+    "anno": 2023,
+    "autore": "Nome Autore",
+    "genere": "Rock"
+}'
 */

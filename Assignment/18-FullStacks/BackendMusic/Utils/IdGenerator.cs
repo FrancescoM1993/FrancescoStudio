@@ -1,3 +1,5 @@
+using BackendMusic.Models;
+
 namespace BackendMusic.Utils
 {
     public static class IdGenerator

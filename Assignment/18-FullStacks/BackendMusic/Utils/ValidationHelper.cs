@@ -25,7 +25,7 @@ namespace BackendMusic.Utils
             }
         }
 
-        // Verifica che un prezzio sia positivo
+        // Verifica che un prezzo sia positivo
         public static bool IsPositivePrice(decimal price)
         {
             return price > 0;

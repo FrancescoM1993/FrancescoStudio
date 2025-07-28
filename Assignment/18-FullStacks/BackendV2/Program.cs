@@ -3,6 +3,7 @@ using Backend.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,14 +33,32 @@ builder.Services.AddCors(options =>
         });
     }
 );
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo {
+        Title = "BackendV2 API",
+        Version = "v1",
+        
+    });
+});
 
 var app = builder.Build();
+// all interno di builder.Services
+
 
 // parte riguardante la configurazione dell'applicazione con l'uso di middleware
 
 // il middleware è un componente che gestisce una funzionalità specifica dell'applicazione
 
 // Middleware HTTPS e CORS
+
+// subito dopo app = builder.Build():
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BackendV2 API V1");
+   
+});
 
 if (app.Environment.IsDevelopment())
 {

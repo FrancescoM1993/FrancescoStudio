@@ -1,15 +1,16 @@
 export interface Purchase {
-    id?: number;
+    id: number;
     userId: number;
     productId: number;
     quantity: number;
-    purchaseDate: Date;
+    purchaseDate: Date | string;
 }
 
 export interface PurchaseDTO {
-    id?: number;
+    id: number;
     userName: string;
     productName: string;
+    productCategory: string;
     quantity: number;
     purchaseDate: string;
 }

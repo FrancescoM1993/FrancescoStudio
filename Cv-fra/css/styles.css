@@ -1,15 +1,61 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
+#about {
+  height: 100vh; /* altezza piena viewport */
+  display: flex;
+  flex-direction: column; /* mantiene contenuti in colonna */
+  justify-content: center; /* centra verticalmente */
+  align-items: center; /* centra orizzontalmente */
+  text-align: center; /* testo centrato */
+  padding: 2rem; /* margini interni */
+}
+
+#about .container {
+  max-width: 800px; /* limita larghezza contenuto */
+}
+
+/* Per gestire le colonne in row: fai che si dispongano affiancate su schermi grandi ma su piccoli una sopra l'altra */
+#about .row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+#about .col-lg-4 {
+  flex: 1 1 300px;
+}
+
+
+.masthead {
+  height: 100vh;
+  min-height: 600px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #19b39b; 
+}
+
+
+.masthead .container {
+  padding: 0;
+  margin: 0;
+}
+
+
+#mainNav {
+  z-index: 1030; /* bootstrap default per navbar fixed */
+}
+
+
+.masthead-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
  .bg-purple {
     background-color: #7952b3 !important;
 }

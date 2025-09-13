@@ -1,17 +1,29 @@
 @charset "UTF-8";
 
+.container-header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.container-about {
+    display: flex;
+    flex-direction: column;
+    min-width: 50%;
+}
+
 #about {
-  height: 100vh; /* altezza piena viewport */
   display: flex;
-  flex-direction: column; /* mantiene contenuti in colonna */
-  justify-content: center; /* centra verticalmente */
-  align-items: center; /* centra orizzontalmente */
-  text-align: center; /* testo centrato */
-  padding: 2rem; /* margini interni */
+  flex-direction: row; 
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  padding: 2rem; 
 }
 
 #about .container {
-  max-width: 800px; /* limita larghezza contenuto */
+  max-width: 800px;
 }
 
 /* Per gestire le colonne in row: fai che si dispongano affiancate su schermi grandi ma su piccoli una sopra l'altra */
@@ -28,7 +40,6 @@
 
 
 .masthead {
-  height: 100vh;
   min-height: 600px; 
   display: flex;
   justify-content: center;
@@ -39,7 +50,7 @@
 
 
 .masthead .container {
-  padding: 0;
+  padding: 30px;
   margin: 0;
 }
 
@@ -113,7 +124,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 26, 188, 156;
+  --bs-primary-rgb: 30, 30, 30;
   --bs-secondary-rgb: 44, 62, 80;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;

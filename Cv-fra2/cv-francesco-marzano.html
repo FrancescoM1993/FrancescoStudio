@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Marzano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Navigation */
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 50px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero-text h2 {
+            font-size: 1.8em;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        .hero-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease-out;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background: #d4b5a0;
+            padding: 15px 0;
+            position: sticky;
+            top: 50px;
+            z-index: 999;
+        }
+
+        .bottom-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .bottom-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .bottom-nav a:hover {
+            color: #667eea;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Chi Sono Section */
+        .section {
+            background: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .info-list {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .info-list li {
+            list-style: none;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .info-list strong {
+            color: #667eea;
+        }
+
+        .about-text {
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        /* Competenze Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .skill-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .skill-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .skill-level {
+            background: #d4b5a0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Esperienze Section */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-image {
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .experience-content {
+            padding: 25px;
+        }
+
+        .experience-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .experience-company {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .experience-period {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .experience-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Formazione Section */
+        .education-item {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .education-logo {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .education-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .education-parts {
+            list-style: none;
+        }
+
+        .education-parts li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .education-date {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        /* Attività Extracurriculari */
+        .activities-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .activities-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .activity-item:hover {
+            background: #e9e9e9;
+        }
+
+        .activity-icon {
+            font-size: 1.5em;
+        }
+
+        .activities-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .hex-image {
+            width: 120px;
+            height: 120px;
+            background: #f0f0f0;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.8em;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5em;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-image {
+                margin-top: 30px;
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid,
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .activities-container {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <div style="color: white; font-weight: bold;">FM</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Chi Sono</a></li>
+                <li><a href="#skills">Competenze</a></li>
+                <li><a href="#experience">Esperienze</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Francesco Marzano</h1>
+                <h2>Sviluppatore Web - Designer - Illustratore</h2>
+            </div>
+            <div class="hero-image">
+                [La tua foto qui]
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Chi Sono Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">📋 Chi Sono</h2>
+            <div class="about-content">
+                <div class="info-list">
+                    <ul>
+                        <li><strong>Data di nascita:</strong><br>30/10/1993</li>
+                        <li><strong>Nazionalità:</strong><br>Italiana</li>
+                        <li><strong>Luogo di residenza:</strong><br>Genova - Italia</li>
+                        <li><strong>Lingue:</strong><br>Italiano - Inglese</li>
+                        <li><strong>Patenti:</strong><br>A - B </li>
+                    </ul>
+                </div>
+                <div class="about-text">
+                    <p>Professionista dinamico e orientato ai risultati con una solida esperienza nel settore Business e IT. Appassionato di tecnologia e innovazione, ho sviluppato competenze trasversali che spaziano dalla gestione progetti allo sviluppo software, dalla consulenza strategica all'implementazione di soluzioni digitali innovative.</p>
+                    <p>La mia formazione multidisciplinare e l'esperienza internazionale mi permettono di affrontare sfide complesse con un approccio analitico e creativo. Sono particolarmente interessato all'intersezione tra business e tecnologia, dove posso applicare le mie competenze per guidare la trasformazione digitale e creare valore tangibile per le organizzazioni.</p>
+                    <p>Credo fermamente nel lavoro di squadra, nella formazione continua e nell'importanza di mantenersi aggiornati sulle ultime tendenze tecnologiche. Il mio obiettivo è contribuire a progetti ambiziosi che abbiano un impatto positivo sul business e sulla società.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competenze Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">💼 Competenze</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">A</div>
+                    <div class="skill-name">ANGULAR</div>
+                    <div class="skill-description">Framework open source per lo sviluppo di applicazioni web.</div>
+                    <div class="skill-level">50%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">C#</div>
+                    <div class="skill-name">CSHARP</div>
+                    <div class="skill-description">Linguaggio di programmazione, sviluppato da Microsoft.</div>
+                    <div class="skill-level">60%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">GH</div>
+                    <div class="skill-name">GITHUB</div>
+                    <div class="skill-description">Piattaforma online che utilizza il sistema di controllo versione Git per ospitare progetti software.</div>
+                    <div class="skill-level">60%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">VS</div>
+                    <div class="skill-name">VISUAL STUDIO CODE</div>
+                    <div class="skill-description">Editor di codice sorgente, sviluppato da Microsoft.</div>
+                    <div class="skill-level">50%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">WP</div>
+                    <div class="skill-name">WORDPRESS</div>
+                    <div class="skill-description">Plug-in che permette la creazione di pagine web tramite un'interfaccia drag-and-drop.</div>
+                    <div class="skill-level">40%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">E</div>
+                    <div class="skill-name">ELEMENTOR</div>
+                    <div class="skill-description">Plug-in che permette la creazione di pagine web tramite un'interfaccia drag-and-drop.</div>
+                    <div class="skill-level">40%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">JS</div>
+                    <div class="skill-name">JAVASCRIPT</div>
+                    <div class="skill-description">Linguaggio di programmazione orientato agli oggetti e agli eventi.</div>
+                    <div class="skill-level">45%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">CSS</div>
+                    <div class="skill-name">CSS</div>
+                    <div class="skill-description">Linguaggio utilizzato per definire la formattazione di documenti HTML.</div>
+                    <div class="skill-level">65%</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">HTML</div>
+                    <div class="skill-name">HTML</div>
+                    <div class="skill-description">Linguaggio standard per la creazione di pagine web.</div>
+                    <div class="skill-level">70%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Esperienze Lavorative Section -->
+        <section id="experience" class="section">
+            <h2 class="section-title">💼 Esperienze Lavorative</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-image">[Immagine Azienda]</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Posizione Lavorativa</h3>
+                        <div class="experience-company">Nome Azienda</div>
+                        <div class="experience-period">Gennaio 2020 - Presente</div>
+                        <p class="experience-description">Descrizione dell'esperienza lavorativa e delle responsabilità principali.</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-image">[Immagine Azienda]</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Posizione Lavorativa</h3>
+                        <div class="experience-company">Nome Azienda</div>
+                        <div class="experience-period">Giugno 2018 - Dicembre 2019</div>
+                        <p class="experience-description">Descrizione dell'esperienza lavorativa e delle responsabilità principali.</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-image">[Immagine Azienda]</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Posizione Lavorativa</h3>
+                        <div class="experience-company">Nome Azienda</div>
+                        <div class="experience-period">Settembre 2016 - Maggio 2018</div>
+                        <p class="experience-description">Descrizione dell'esperienza lavorativa e delle responsabilità principali.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formazione Section -->
+        <section id="education" class="section">
+            <h2 class="section-title">📚 Formazione</h2>
+            <div class="education-item">
+                <div class="education-logo">FIRE</div>
+                <h3 class="education-title">ENTE FIRE</h3>
+                <ul class="education-parts">
+                    <li>1° Parte <span>✓</span></li>
+                    <li>2° Parte <span>✓</span></li>
+                    <li>3° Parte <span>✓</span></li>
+                    <li>4° Parte <span>✓</span></li>
+                </ul>
+                <div class="education-date">05/2025 - 12/2025 Certificato Tecnico informatico</div>
+            </div>
+        </section>
+
+        <!-- Attività Extracurriculari Section -->
+        <section id="activities" class="section">
+            <h2 class="section-title">📷 Attività Extracurriculari</h2>
+            <div class="activities-container">
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">🏍️</span>
+                        <span>Guidare moto</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎵</span>
+                        <span>Ascoltare musica</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">✈️</span>
+                        <span>Viaggiare</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎸</span>
+                        <span>Suonare chitarra</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">⚽</span>
+                        <span>Giocare a calcio</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🏊</span>
+                        <span>Nuotare</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎨</span>
+                        <span>Disegnare</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎮</span>
+                        <span>Videogiochi</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📚</span>
+                        <span>Leggere</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">👥</span>
+                        <span>Uscire con amici</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎭</span>
+                        <span>Andare a teatro</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎼</span>
+                        <span>Concerti musicali</span>
+                    </div>
+                </div>
+                <div class="activities-images">
+                    <div class="hex-image">[Foto 1]</div>
+                    <div class="hex-image">[Foto 2]</div>
+                    <div class="hex-image">[Foto 3]</div>
+                    <div class="hex-image">[Foto 4]</div>
+                    <div class="hex-image">[Foto 5]</div>
+                    <div class="hex-image">[Foto 6]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">👤 Contatti</h2>
+            <div class="contact-form">
+                <p style="margin-bottom: 30px; text-align: center; font-size: 1.1em;">Compila il form e ti contatterò subito!</p>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cognome">Cognome</label>
+                            <input type="text" id="cognome" name="cognome" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Indirizzo mail @</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="azienda">Azienda</label>
+                            <input type="text" id="azienda" name="azienda">
+                        </div>
+                        <div class="form-group">
+                            <label for="citta">Città</label>
+                            <select id="citta" name="citta">
+                                <option value="">Seleziona...</option>
+                                <option value="milano">Milano</option>
+                                <option value="roma">Roma</option>
+                                <option value="torino">Torino</option>
+                                <option value="genova">Genova</option>
+                                <option value="napoli">Napoli</option>
+                                <option value="bologna">Bologna</option>
+                                <option value="firenze">Firenze</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="tel

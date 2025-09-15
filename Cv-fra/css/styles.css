@@ -670,13 +670,13 @@ progress {
   margin-bottom: 0;
 }
 
-.blockquote-footer {
+.blockquote- {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
   color: #6c757d;
 }
-.blockquote-footer::before {
+.blockquote-::before {
   content: "— ";
 }
 
@@ -4279,7 +4279,7 @@ textarea.form-control-lg {
   border-bottom-left-radius: var(--bs-card-inner-border-radius);
 }
 .card > .card-header + .list-group,
-.card > .list-group + .card-footer {
+.card > .list-group + .card- {
   border-top: 0;
 }
 

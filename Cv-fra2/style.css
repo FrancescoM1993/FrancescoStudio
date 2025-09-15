@@ -299,7 +299,7 @@ body {
 
 /* Chi Sono Section */
 .section {
-    background: white;
+    background: #b7c9e2;
     padding: 60px 20px;
     margin-bottom: 40px;
     border-radius: 10px;
@@ -513,11 +513,12 @@ body {
 
 /* Attività Extracurriculari */
 .activities-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 40px;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
+
 
 .activities-list {
     display: grid;
@@ -853,9 +854,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .activities-container {
-        grid-template-columns: 1fr;
-    }
+
 
     .bottom-nav ul {
         flex-wrap: wrap;

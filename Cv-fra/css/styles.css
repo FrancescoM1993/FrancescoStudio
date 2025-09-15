@@ -24,7 +24,7 @@
 }
 
 #about .container {
-  max-width: 800px;
+  margin-bottom: 7rem;
 }
 
 /* Per gestire le colonne in row: fai che si dispongano affiancate su schermi grandi ma su piccoli una sopra l'altra */

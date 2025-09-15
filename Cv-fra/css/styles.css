@@ -691,6 +691,10 @@ progress {
 .list-unstyled {
   padding-left: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 
 .list-inline {
@@ -13223,3 +13227,16 @@ html {
     padding: 20px 15px;
   }
 }
+
+.fa-wordpress {
+  color: rgb(242 233 233) !important;
+}
+
+.fa-css3-alt {
+  color: rgb(242 233 233) !important;
+}
+
+.fa-laptop-code {
+  color: rgb(242 233 233) !important;
+}
+

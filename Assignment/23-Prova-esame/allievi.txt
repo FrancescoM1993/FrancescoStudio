@@ -1,0 +1,4 @@
+Nome: Vitto
+Voto: 900
+Nome: Francesco
+Voto: -1

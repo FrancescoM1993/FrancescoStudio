@@ -1,0 +1,12 @@
+[
+  {
+    "Titolo": "Fra",
+    "Genere": "Vitto",
+    "Letto": true
+  },
+  {
+    "Titolo": "Luca",
+    "Genere": "Programmatore",
+    "Letto": false
+  }
+]
